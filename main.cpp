@@ -44,7 +44,7 @@ int main(int args, char *argv[]){
         if (command == "-add") {
             // Append argv[2] as a new task
             op.addTask(-1, argv[2]);
-            std::cout << "Task appended. " << std::endl;
+            //std::cout << "Task appended. " << std::endl;
             return 0;
         }
 

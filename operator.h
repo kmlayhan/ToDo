@@ -22,6 +22,7 @@ class Operator{
         void printAllList();
         void clearList();
         static int printCallback(void *, int, char **, char **);
+        void checkError(const int, const std::string &) const;
       
 };
 
