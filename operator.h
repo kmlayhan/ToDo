@@ -27,3 +27,4 @@ class Operator{
 };
 
 #endif
+
