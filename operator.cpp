@@ -177,3 +177,6 @@ void Operator::checkError(const int rc, const std::string &msg) const {
     }
 }
 
+Operator::~Operator() {
+    sqlite3_close(db);
+}

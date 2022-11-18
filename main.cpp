@@ -1,5 +1,6 @@
 #include "operator.cpp"
 #include <math.h>   
+#include <stdexcept>
 
 void isFloat(const char*, int &, int &);
 bool doesIndexExist(const Operator &, int, int);
@@ -30,11 +31,11 @@ int main(int args, char *argv[]){
                 }
 
                 if( !(response == 'y' || response == 'Y') ){
-                    exit(0);
+                    return 0;
                 }
             op.clearList();
         }
-        exit(0);
+        return 0;
     }
 
     // 3 argument is entered
@@ -58,10 +59,10 @@ int main(int args, char *argv[]){
             // Check if the given index exits on database.
             if(!doesIndexExist(op, intPart, fracPart)){
                 std::cout << "Given task does not exits" << std::endl;
-                exit(0);
+                return 0;
             }
             else if(intPart == 0 || fracPart == 0) {
-                exit(0);
+                return 0;
             }
 
             // Index is integer
@@ -76,7 +77,7 @@ int main(int args, char *argv[]){
                 }
 
                 if( !(response == 'y' || response == 'Y') ){
-                    exit(0);
+                    return 0;
                 }
 
             }    
@@ -110,7 +111,7 @@ int main(int args, char *argv[]){
             // If index does not exits
             if(!doesIndexExist(op, intPart, fracPart) && (intPart == 0 || fracPart == 0) ){
             std::cout << "Given task does not exits" << std::endl;
-            exit(1);
+            return 0;
             }
 
             op.updateContent(intPart, fracPart, argv[3]);
@@ -137,7 +138,12 @@ void isFloat(const char* arg, int &integer, int &frac){
         int decimalIndex = strArg.find('.');
         integer = std::stoi(strArg.substr(0,decimalIndex));
         if (decimalIndex != std::string::npos){
-            frac = std::stoi(strArg.substr(decimalIndex+1,strArg.length()));
+            size_t pos;
+            std::string sub = strArg.substr(decimalIndex+1,strArg.length());
+            frac = std::stoi(sub, &pos);
+            if (pos != sub.length()) {
+                throw std::invalid_argument("");
+            }
         }
     } 
     

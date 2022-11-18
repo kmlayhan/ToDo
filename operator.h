@@ -23,7 +23,7 @@ class Operator{
         void clearList();
         static int printCallback(void *, int, char **, char **);
         void checkError(const int, const std::string &) const;
-      
+        ~Operator();
 };
 
 #endif
