@@ -170,3 +170,4 @@ bool doesIndexExist(const Operator &op, int intPart, int fracPart){
     }
     return 1;
 }
+
